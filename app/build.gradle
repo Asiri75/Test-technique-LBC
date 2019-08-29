@@ -32,6 +32,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
+    def appcompat_version = "28.0.0"
+    implementation "com.android.support:recyclerview-v7:$appcompat_version"
+
     // Internal database and Lifecycle
     def room_version = "2.2.0-beta01"
     implementation "android.arch.persistence.room:runtime:$room_version"
@@ -44,6 +47,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
 
+    //Image loader
+    implementation 'com.squareup.picasso:picasso:2.71828'
     //Easy logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
 }

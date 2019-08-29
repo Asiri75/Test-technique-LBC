@@ -1,7 +1,8 @@
-package com.asiri.lbctest
+package com.asiri.lbctest.albumslist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.asiri.lbctest.R
 
 class MainActivity : AppCompatActivity() {
 
