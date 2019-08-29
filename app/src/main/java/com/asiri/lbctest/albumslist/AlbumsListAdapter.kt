@@ -39,8 +39,8 @@ class AlbumsListAdapter(
         with(holder) {
             albumView.setOnClickListener(this@AlbumsListAdapter)
             albumView.tag = album
-            albumTitle.text = Resources.getSystem().getString(R.string.album_view_title, album.id)
-            albumNbTitles.text = Resources.getSystem().getString(R.string.album_number_of_titles, album.nbOfTitles)
+            albumTitle.text = itemView.context.getString(R.string.album_view_title, album.id)
+            albumNbTitles.text = itemView.context.getString(R.string.album_number_of_titles, album.nbOfTitles)
 
             Picasso.get()
                 .load(album.thumbnailUrl)

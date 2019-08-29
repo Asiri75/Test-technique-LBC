@@ -21,7 +21,7 @@ interface TitleDao {
     @Query("SELECT * FROM title WHERE albumId = :albumId")
     fun getTitlesByAlbumId(albumId: Int) : LiveData<Title>
 
-    //Insert all titles: in case of conflict, for the project (stable api and large amount of data) we abort the insertion
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    //Insert all titles: in case of conflict, update it
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTitles(titles: List<Title>)
 }
