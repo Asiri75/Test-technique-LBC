@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.HORIZONTAL
 
 
-class TitlesListActivity : AppCompatActivity(), TitlesListAdapter.TitlesListAdapterListener {
+class TitlesListActivity : AppCompatActivity() {
 
     companion object {
         const val ALBUM_ID_EXTRA = "ALBUM_ID_EXTRA"
@@ -40,7 +40,7 @@ class TitlesListActivity : AppCompatActivity(), TitlesListAdapter.TitlesListAdap
 
     private fun initDataAndRecycler() {
         Timber.d("Initialisation of recycler")
-        titleListAdapter = TitlesListAdapter(titlesList, this)
+        titleListAdapter = TitlesListAdapter(titlesList)
         titles_list.adapter = titleListAdapter
         titlesListViewModel.getTitlesListLiveData(App.db, albumId).observe(this, Observer { titles ->
             titlesList.clear()
@@ -49,9 +49,5 @@ class TitlesListActivity : AppCompatActivity(), TitlesListAdapter.TitlesListAdap
             titleListAdapter.notifyDataSetChanged()
         })
         titles_progress_bar.visibility = View.VISIBLE
-    }
-
-    override fun onTitleSelected(title: Title) {
-
     }
 }

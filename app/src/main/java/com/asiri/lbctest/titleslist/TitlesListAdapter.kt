@@ -11,14 +11,7 @@ import com.asiri.lbctest.R
 import com.asiri.lbctest.model.Title
 import com.squareup.picasso.Picasso
 
-class TitlesListAdapter(
-    private val titles: List<Title>,
-    private val listener: TitlesListAdapterListener?
-) : RecyclerView.Adapter<TitlesListAdapter.ViewHolder>(), View.OnClickListener {
-
-    interface TitlesListAdapterListener {
-        fun onTitleSelected(title: Title)
-    }
+class TitlesListAdapter(private val titles: List<Title>) : RecyclerView.Adapter<TitlesListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleView = itemView.findViewById<ConstraintLayout>(R.id.title_view)!!
@@ -35,10 +28,8 @@ class TitlesListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val title = titles[position]
         with(holder) {
-            titleView.setOnClickListener(this@TitlesListAdapter)
             titleView.tag = title
             titleTitle.text = title.title
-
             Picasso.get()
                 .load(title.thumbnailUrl)
                 .placeholder(R.drawable.ic_default_album)
@@ -46,13 +37,6 @@ class TitlesListAdapter(
         }
 
     }
-
     override fun getItemCount() = titles.size
-
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.title_view -> listener?.onTitleSelected(view.tag as Title)
-        }
-    }
 
 }
