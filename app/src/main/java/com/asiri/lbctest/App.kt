@@ -4,11 +4,13 @@ import android.app.Application
 import androidx.room.Room
 import com.asiri.lbctest.database.AppDatabase
 import com.asiri.lbctest.database.DATABASE_NAME
+import com.asiri.lbctest.repository.TitleRepository
 
 class App : Application() {
 
     companion object {
         lateinit var db: AppDatabase
+        lateinit var titleRepository: TitleRepository
     }
 
     override fun onCreate() {
@@ -18,6 +20,9 @@ class App : Application() {
         db = Room.databaseBuilder(this,
             AppDatabase::class.java, DATABASE_NAME)
             .build()
+
+        //Same for the album repository
+        titleRepository = TitleRepository()
     }
 
 }
