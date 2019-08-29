@@ -34,15 +34,19 @@ class TitlesListActivity : AppCompatActivity() {
             albumId = intent.getIntExtra(ALBUM_ID_EXTRA, 0)
         } else finish()
 
+        //Init the viewmodel
         titlesListViewModel = ViewModelProviders.of(this).get(TitlesListViewModel::class.java)
         initDataAndRecycler()
     }
 
+    //Function to init the recyler and update it
     private fun initDataAndRecycler() {
         Timber.d("Initialisation of recycler")
         titleListAdapter = TitlesListAdapter(titlesList)
         titles_list.adapter = titleListAdapter
         titlesListViewModel.getTitlesListLiveData(App.db, albumId).observe(this, Observer { titles ->
+            //Update the title list
+            Timber.d("Adapter updating")
             titlesList.clear()
             titlesList.addAll(titles)
             titles_progress_bar.visibility = View.GONE

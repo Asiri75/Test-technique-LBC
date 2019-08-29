@@ -37,11 +37,13 @@ class AlbumsListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val album = albums[position]
         with(holder) {
+            //Update the album elements and add click listener
             albumView.setOnClickListener(this@AlbumsListAdapter)
             albumView.tag = album.id
             albumTitle.text = itemView.context.getString(R.string.album_view_title, album.id)
             albumNbTitles.text = itemView.context.getString(R.string.album_number_of_titles, album.nbOfTitles)
 
+            //Image loading via Picasso
             Picasso.get()
                 .load(album.thumbnailUrl)
                 .placeholder(R.drawable.ic_default_album)

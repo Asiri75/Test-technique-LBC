@@ -28,6 +28,7 @@ class TitlesListAdapter(private val titles: List<Title>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val title = titles[position]
         with(holder) {
+            //Update the title elements
             titleView.tag = title
             titleTitle.text = title.title
             Picasso.get()

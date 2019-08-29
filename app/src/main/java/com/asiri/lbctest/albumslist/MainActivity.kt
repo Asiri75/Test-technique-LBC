@@ -24,25 +24,34 @@ class MainActivity : AppCompatActivity(), AlbumsListAdapter.AlbumsListAdapterLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Launching the api http call
         App.titleRepository.syncTitleNow()
+
+        //Init the viewmodel
         albumsListViewModel = ViewModelProviders.of(this).get(AlbumsListViewModel::class.java)
-        Timber.d("Initialisation of recycler")
         initDataAndRecycler()
     }
 
+    //Function to init the recyler and update it
     private fun initDataAndRecycler() {
         Timber.d("Initialisation of recycler")
         albumListAdapter = AlbumsListAdapter(albumsList, this)
         albums_list.adapter = albumListAdapter
+
         albumsListViewModel.getAlbumsListLiveData(this, App.db).observe(this, Observer { albums ->
+            //Update the album list
+            Timber.d("Adapter updating")
             albumsList.clear()
             albumsList.addAll(albums)
-            albums_progress_bar.visibility = View.GONE
             albumListAdapter.notifyDataSetChanged()
+            albums_progress_bar.visibility = View.GONE
         })
+
         albums_progress_bar.visibility = View.VISIBLE
     }
 
+    //When an album is selected, laucnh the titles list of this album
     override fun onAlbumSelected(albumId: Int) {
         Timber.d("Album %d selected", albumId)
         val intent = Intent(this, TitlesListActivity::class.java)
