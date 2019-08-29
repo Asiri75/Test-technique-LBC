@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.asiri.lbctest.database.AppDatabase
 import com.asiri.lbctest.database.DATABASE_NAME
 import com.asiri.lbctest.repository.TitleRepository
+import timber.log.Timber
 
 class App : Application() {
 
@@ -15,6 +16,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        //We initialize the logging library
+        Timber.plant(Timber.DebugTree())
 
         //Attach the database reference to the app for global access
         db = Room.databaseBuilder(this,
