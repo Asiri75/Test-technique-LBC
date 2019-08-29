@@ -18,7 +18,7 @@ class AlbumsListAdapter(
 ) : RecyclerView.Adapter<AlbumsListAdapter.ViewHolder>(), View.OnClickListener {
 
     interface AlbumsListAdapterListener {
-        fun onAlbumSelected(album: Album)
+        fun onAlbumSelected(albumId: Int)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,7 +38,7 @@ class AlbumsListAdapter(
         val album = albums[position]
         with(holder) {
             albumView.setOnClickListener(this@AlbumsListAdapter)
-            albumView.tag = album
+            albumView.tag = album.id
             albumTitle.text = itemView.context.getString(R.string.album_view_title, album.id)
             albumNbTitles.text = itemView.context.getString(R.string.album_number_of_titles, album.nbOfTitles)
 
@@ -54,7 +54,7 @@ class AlbumsListAdapter(
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.album_view -> listener?.onAlbumSelected(view.tag as Album)
+            R.id.album_view -> listener?.onAlbumSelected(view.tag as Int)
         }
     }
 

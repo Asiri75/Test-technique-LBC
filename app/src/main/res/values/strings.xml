@@ -2,4 +2,5 @@
     <string name="app_name">LBC test</string>
     <string name="album_view_title">Album %1$d</string>
     <string name="album_number_of_titles">%1$d titres</string>
+    <string name="title_view_title">Titre</string>
 </resources>

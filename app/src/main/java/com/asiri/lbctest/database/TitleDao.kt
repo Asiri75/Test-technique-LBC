@@ -19,7 +19,7 @@ interface TitleDao {
 
     //Get all the title for identified album
     @Query("SELECT * FROM title WHERE albumId = :albumId")
-    fun getTitlesByAlbumId(albumId: Int) : LiveData<Title>
+    fun getTitlesByAlbumId(albumId: Int) : LiveData<List<Title>>
 
     //Insert all titles: in case of conflict, update it
     @Insert(onConflict = OnConflictStrategy.REPLACE)

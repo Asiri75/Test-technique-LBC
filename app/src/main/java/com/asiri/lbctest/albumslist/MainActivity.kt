@@ -1,13 +1,17 @@
 package com.asiri.lbctest.albumslist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.asiri.lbctest.App
 import com.asiri.lbctest.R
 import com.asiri.lbctest.model.Album
+import com.asiri.lbctest.titleslist.TitlesListActivity
+import com.asiri.lbctest.titleslist.TitlesListActivity.Companion.ALBUM_ID_EXTRA
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -39,7 +43,10 @@ class MainActivity : AppCompatActivity(), AlbumsListAdapter.AlbumsListAdapterLis
         albums_progress_bar.visibility = View.VISIBLE
     }
 
-    override fun onAlbumSelected(album: Album) {
-        Timber.d("Album %d selected", album.id)
+    override fun onAlbumSelected(albumId: Int) {
+        Timber.d("Album %d selected", albumId)
+        val intent = Intent(this, TitlesListActivity::class.java)
+        intent.putExtra(ALBUM_ID_EXTRA, albumId)
+        startActivity(intent)
     }
 }
